@@ -130,6 +130,8 @@ end
 function CreateEnv(func, ply)
 	local env = {}
 
+	env.gm = gmod.GetGamemode()
+
 	local me = IsValid(ply) and ply or LocalPlayer()
 
 	env.me = me
