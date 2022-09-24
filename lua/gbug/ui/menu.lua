@@ -18,17 +18,14 @@ local modes = {
 local modeCommands = {
 	["@me"] = gbug.TARGET_SELF,
 	["@self"] = gbug.TARGET_SELF,
-	["@cl"] = gbug.TARGET_SELF,
-	["@client"] = gbug.TARGET_SELF,
 	["@ply"] = gbug.TARGET_CLIENT,
+	["@cl"] = gbug.TARGET_CLIENTS,
 	["@clients"] = gbug.TARGET_CLIENTS,
-	["@everyone"] = gbug.TARGET_CLIENTS,
 	["@server"] = gbug.TARGET_SERVER,
 	["@sv"] = gbug.TARGET_SERVER,
 	["@sh"] = gbug.TARGET_SHARED,
 	["@shared"] = gbug.TARGET_SHARED,
-	["@all"] = gbug.TARGET_GLOBAL,
-	["@gl"] = gbug.TARGET_GLOBAL,
+	["@g"] = gbug.TARGET_GLOBAL,
 	["@global"] = gbug.TARGET_GLOBAL
 }
 
