@@ -5,30 +5,30 @@ Designed after [GCompute](https://github.com/notcake/gcompute) this library give
 
 ## Commands
 
-| Command     |                                                                              |
-|-------------|------------------------------------------------------------------------------|
-| gbug_reload | Reloads the UI, you shouldn't have to use this                               |
-| gbug_toggle | Toggles the UI's visibility, this is the only way to access it at the moment |
+| Command       |                                                                              |
+|---------------|------------------------------------------------------------------------------|
+| `gbug_reload` | Reloads the UI, you shouldn't have to use this                               |
+| `gbug_toggle` | Toggles the UI's visibility, this is the only way to access it at the moment |
 
 ## Modes
 
 Modes are specified by typing `@<mode>:<arg>` either in front of your command or on it's own. The former will use that mode for that command while the latter changes the default.
 
-| Mode           | Commands       |                                                                            |
-|----------------|----------------|----------------------------------------------------------------------------|
-| TARGET_SELF    | `@me, @self`   | Runs the code on your own client                                           |
-| TARGET_CLIENT  | `@ply:id`      | Runs the code on a specific player, chosen by their userid (from `status`) |
-| TARGET_CLIENTS | `@cl, @client` | Runs the code on every (human) client                                      |
-| TARGET_SERVER  | `@sv, @server` | Runs the code on the server                                                |
-| TARGET_SHARED  | `@sh, @shared` | Runs the code on your own client and the server                            |
-| TARGET_GLOBAL  | `@g, @global`  | Runs the code on **everyone**                                              |
+| Mode             | Commands       |                                                                            |
+|------------------|----------------|----------------------------------------------------------------------------|
+| `TARGET_SELF`    | `@me, @self`   | Runs the code on your own client                                           |
+| `TARGET_CLIENT`  | `@ply:id`      | Runs the code on a specific player, chosen by their userid (from `status`) |
+| `TARGET_CLIENTS` | `@cl, @client` | Runs the code on every (human) client                                      |
+| `TARGET_SERVER`  | `@sv, @server` | Runs the code on the server                                                |
+| `TARGET_SHARED`  | `@sh, @shared` | Runs the code on your own client and the server                            |
+| `TARGET_GLOBAL`  | `@g, @global`  | Runs the code on **everyone**                                              |
 
 ## Hooks
 
-| Hook           | Arguments    |                                                                                                                                                  |
-|----------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| gbug.Access    | `Player ply` | Determines whether or not someone can access/use gbug, defaults to `ply:IsSuperAdmin()`                                                          |
-| gbug.CreateEnv | `Table env`  | Allows you to modify the environment table, this table contains all of the function overrides and helper vars available to code run through gbug |
+| Hook             | Arguments    |                                                                                         |
+|------------------|--------------|-----------------------------------------------------------------------------------------|
+| `gbug.Access`    | `Player ply` | Determines whether or not someone can access/use gbug, defaults to `ply:IsSuperAdmin()` |
+| `gbug.CreateEnv` | `Table env`  | Allows you to modify the environment table                                              |
 
 ## Environment
 
