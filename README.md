@@ -34,19 +34,19 @@ Modes are specified by typing `@<mode>:<arg>` either in front of your command or
 
 Any code running in gbug will have access to a plethora of additional functions or variables to make debugging quick and easy, these effectively act as local vars
 
-| Var     | Type     |                                                        |
-|---------|----------|--------------------------------------------------------|
-| `me`    | `Player` | The player that's running the code **NOT LOCALPLAYER** |
-| `lp`    | `Player` | `LocalPlayer()`                                        |
-| `sid`   | `String` | `me:SteamID()`                                         |
-| `here`  | `Vector` | `me:GetPos()`                                          |
-| `eye`   | `Vector` | `me:EyePos()`                                          |
-| `tr`    | `Table`  | `me:GetEyeTrace()`                                     |
-| `there` | `Vector` | `tr.HitPos`                                            |
-| `this`  | `Entity` | `tr.Entity`                                            |
+| Var     | Type     |                                    |
+|---------|--------- |------------------------------------|
+| `gm`    | `Table`  | `gmod.GetGamemode()`               |
+| `me`    | `Player` | The player that's running the code |
+| `lp`    | `Player` | `LocalPlayer()`                    |
 
-All of these have local equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
+| Var     | Type     |                    |
+|---------|----------|--------------------|
+| `sid`   | `String` | `me:SteamID()`     |
+| `here`  | `Vector` | `me:GetPos()`      |
+| `eye`   | `Vector` | `me:EyePos()`      |
+| `tr`    | `Table`  | `me:GetEyeTrace()` |
+| `there` | `Vector` | `tr.HitPos`        |
+| `this`  | `Entity` | `tr.Entity`        |
 
-| Var  | Type    |                      |
-|------|---------|----------------------|
-| `gm` | `Table` | `gmod.GetGamemode()` |
+All of these have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
