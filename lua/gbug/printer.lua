@@ -45,8 +45,11 @@ function RunPrinter(val, mod, inline)
 	end
 end
 
+local tableLimit = 140
+
 function TablePrinter(val)
-	local tab = val:GetTable()
+	local tab = istable(val) and val or val:GetTable()
+	local count = table.Count(tab)
 
 	if table.IsEmpty(tab) then
 		return {color_white, "{}"}
@@ -55,7 +58,15 @@ function TablePrinter(val)
 	local acc = {color_white, "{\n"}
 	local width = 0
 
+	local i = 0
+
 	for k, v in SortedPairs(tab) do
+		if i >= tableLimit then
+			i = 0
+
+			break
+		end
+
 		local key = tostring(k)
 
 		if tonumber(key[1]) then
@@ -63,11 +74,18 @@ function TablePrinter(val)
 		end
 
 		width = math.max(width, #key)
+		i = i + 1
 	end
 
 	local first = true
 
 	for k, v in SortedPairs(tab) do
+		if i >= tableLimit then
+			table.Add(acc, {gbug.Colors.Comment, "\n", gbug.Indent, string.format("%s more...", count - tableLimit)})
+
+			break
+		end
+
 		local prefix = {}
 
 		if first then
@@ -82,11 +100,19 @@ function TablePrinter(val)
 		table.Add(acc, prefix)
 		table.Add(acc, key)
 		table.Add(acc, value)
+
+		i = i + 1
 	end
 
 	table.Add(acc, {
 		color_white, "\n}"
 	})
+
+	if not table.IsEmpty(tab) then
+		table.Add(acc, {
+			gbug.Colors.Comment, string.format("\n-- %s total %s.", count, count > 1 and "entries" or "entry")
+		})
+	end
 
 	return acc
 end
