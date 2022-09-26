@@ -74,18 +74,24 @@ if CLIENT then
 	end
 end
 
-TableAcc = ""
+MessageBuffer = {}
 
-function TableOut(...)
+function WriteToBuffer(...)
 	for _, v in pairs({...}) do
-		TableAcc = TableAcc .. tostring(v)
+		MessageBuffer = MessageBuffer .. tostring(v)
 	end
 end
 
-function FlushTable(ply)
-	HandleOutput(ply, {gbug.Colors.Print, TableAcc})
+function FlushMessageBuffer(ply)
+	if table.IsEmpty(MessageBuffer) then
+		return
+	end
 
-	TableAcc = ""
+	table.insert(MessageBuffer, 1, gbug.Colors.Print)
+
+	HandleOutput(ply, MessageBuffer)
+
+	table.Empty(MessageBuffer)
 end
 
 function ErrorOut(ply, err)
@@ -191,6 +197,7 @@ function Run(str, ply)
 	end)
 
 	RestoreDetours()
+	FlushMessageBuffer(ply)
 
 	if not ok then
 		return

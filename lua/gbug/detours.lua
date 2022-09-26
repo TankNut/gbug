@@ -73,23 +73,23 @@ function CreateDetours(ply)
 			local key = keys[i]
 			local value = t[key]
 
-			TableOut(string.rep("\t", indent))
+			WriteToBuffer(string.rep("\t", indent))
 
 			if istable(value) and not done[value] then
 				done[value] = true
 
-				TableOut(key, ":\n")
+				WriteToBuffer(key, ":\n")
 
 				PrintTable(value, indent + 2, done)
 
 				done[value] = nil
 			else
-				TableOut(key, "\t=\t", value, "\n")
+				WriteToBuffer(key, "\t=\t", value, "\n")
 			end
 		end
 
 		if indent == 0 then
-			FlushTable(ply)
+			FlushMessageBuffer(ply)
 		end
 	end)
 end
