@@ -34,11 +34,11 @@ Modes are specified by typing `@<mode>:<arg>` either in front of your command or
 
 Any code running in gbug will have access to a plethora of additional functions or variables to make debugging quick and easy, these effectively act as local vars
 
-| Var     | Type     |                                    |
-|---------|--------- |------------------------------------|
-| `gm`    | `Table`  | `gmod.GetGamemode()`               |
-| `me`    | `Player` | The player that's running the code |
-| `lp`    | `Player` | `LocalPlayer()`                    |
+| Var     | Type     |                                        |
+|---------|--------- |----------------------------------------|
+| `gm`    | `Table`  | `gmod.GetGamemode()`                   |
+| `me`    | `Player` | The player that's running the code     |
+| `lp`    | `Player` | **(CLIENT)** `LocalPlayer()`           |
 
 | Var     | Type     |                    |
 |---------|----------|--------------------|
@@ -50,3 +50,7 @@ Any code running in gbug will have access to a plethora of additional functions 
 | `this`  | `Entity` | `tr.Entity`        |
 
 All of these have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
+
+| Function                | Return          |                                                                                                                                                      |
+|-------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NamedEntities(filter)` | `Table\|Entity` | **(SERVER)** Returns a key-value table containing every named entity that matches `filter`, returns the entity directly if there's only one result   |

@@ -157,6 +157,28 @@ function CreateEnv(func, ply)
 
 		env.lthere = ltr.HitPos
 		env.lthis = ltr.Entity
+	else
+		env.NamedEntities = function(filter)
+			filter = filter or ""
+
+			local tab = {}
+
+			for _, v in pairs(ents.GetAll()) do
+				local name = v:GetName()
+
+				if not v:IsPlayer() and name != "" and string.find(name, filter) then
+					tab[name] = v
+				end
+			end
+
+			if table.Count(tab) == 1 then
+				local _, val = next(tab)
+
+				return val
+			end
+
+			return tab
+		end
 	end
 
 	hook.Run("gbug.CreateEnv", env)
