@@ -51,6 +51,6 @@ Any code running in gbug will have access to a plethora of additional functions 
 
 All of these have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
 
-| Function                | Return          |                                                                                                                                                      |
+| Function                | Returns         |                                                                                                                                                      |
 |-------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `NamedEntities(filter)` | `Table\|Entity` | **(SERVER)** Returns a key-value table containing every named entity that matches `filter`, returns the entity directly if there's only one result   |
