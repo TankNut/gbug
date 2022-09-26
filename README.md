@@ -32,7 +32,7 @@ Modes are specified by typing `@<mode>:<arg>` either in front of your command or
 
 ## Environment
 
-Any code running in gbug will have access to a plethora of additional functions or variables to make debugging quick and easy, these effectively act as local vars
+Any code running in gbug will have access to a plethora of additional functions or variables to make debugging quick and easy, these effectively act as local vars or functions
 
 | Var     | Type     |                                        |
 |---------|--------- |----------------------------------------|
