@@ -46,7 +46,7 @@ function NetWrite(tab)
 	end
 
 	net.WriteBool(isnumber(data[1])) -- Color first?
-	net.WriteUInt(#data, 10)
+	net.WriteUInt(#data, 16)
 
 	for _, v in pairs(data) do
 		if isnumber(v) then
@@ -67,7 +67,7 @@ function NetRead()
 	local colorNext = net.ReadBool()
 	local data = {}
 
-	for i = 1, net.ReadUInt(10) do
+	for i = 1, net.ReadUInt(16) do
 		if colorNext then
 			table.insert(data, atlas[net.ReadUInt(8)])
 		else
