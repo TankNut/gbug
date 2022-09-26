@@ -9,6 +9,7 @@ Error = Color(206, 92, 92)
 Print = Color(244, 165, 96)
 Received = Color(255, 166, 0)
 Comment = Color(28, 140, 28)
+Value = Color(136, 207, 236)
 
 -- Realms
 

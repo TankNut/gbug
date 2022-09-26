@@ -47,3 +47,8 @@ end
 
 AddPrinter(TYPE_BOOL, "Bool")
 AddPrinter(TYPE_STRING, "String")
+AddPrinter(TYPE_VECTOR, "Vector")
+AddPrinter(TYPE_ANGLE, "Angle")
+
+AddCustomPrinter("player", function(val) return IsEntity(val) and val:IsPlayer() end, "Player")
+AddCustomPrinter("color", IsColor, "Color")
