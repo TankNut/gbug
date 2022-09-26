@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 module("gbug", package.seeall)
 
-Indent = "  "
+Indent = "    "
 
 include("detours.lua")
 include("net.lua")
