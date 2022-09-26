@@ -4,6 +4,7 @@ module("gbug.Printer.Angle", package.seeall)
 
 function Print(val)
 	return {
+		gbug.Colors.Comment, string.format("-- %p\n", val),
 		gbug.Colors.Value, "Angle", color_white, "(",
 		gbug.Colors.Print, tostring(math.Round(val.p, 6)), color_white, ", ",
 		gbug.Colors.Print, tostring(math.Round(val.y, 6)), color_white, ", ",

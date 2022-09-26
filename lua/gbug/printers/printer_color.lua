@@ -21,6 +21,6 @@ function Inline(val)
 		gbug.Colors.Print, tostring(math.Round(val.g)), color_white, ", ",
 		gbug.Colors.Print, tostring(math.Round(val.b)), color_white, ", ",
 		gbug.Colors.Print, tostring(math.Round(val.a)), color_white, ")",
-		gbug.Colors.Comment, "--", val, "█\n"
+		gbug.Colors.Comment, "--[[", val, "█", gbug.Colors.Comment, "]]--\n"
 	}
 end

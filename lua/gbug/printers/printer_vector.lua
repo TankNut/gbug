@@ -4,6 +4,7 @@ module("gbug.Printer.Vector", package.seeall)
 
 function Print(val)
 	return {
+		gbug.Colors.Comment, string.format("-- %p\n", val),
 		gbug.Colors.Value, "Vector", color_white, "(",
 		gbug.Colors.Print, tostring(math.Round(val.x, 6)), color_white, ", ",
 		gbug.Colors.Print, tostring(math.Round(val.y, 6)), color_white, ", ",
