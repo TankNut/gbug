@@ -4,6 +4,7 @@ module("gbug", package.seeall)
 
 Indent = "  "
 
+include("detours.lua")
 include("net.lua")
 include("printer.lua")
 
@@ -87,18 +88,6 @@ function FlushTable(ply)
 	TableAcc = ""
 end
 
-function PrintOut(ply, ...)
-	local tab = {...}
-
-	for k, v in pairs(tab) do
-		tab[k] = tostring(v)
-	end
-
-	local str = table.concat(tab, Indent)
-
-	HandleOutput(ply, {gbug.Colors.Print, str})
-end
-
 function ErrorOut(ply, err)
 	local sub = string.find(err, "\n\t[C]: in function 'xpcall'", 1, true) -- Anything beyond this is irrelevant
 
@@ -164,20 +153,6 @@ function CreateEnv(func, ply)
 		env.lthis = ltr.Entity
 	end
 
-	env.print = function(...)
-		PrintOut(ply, ...)
-	end
-
-	env.PrintTable = function(tab)
-		local old = _G.Msg
-
-		_G.Msg = TableOut
-		_G.PrintTable(tab)
-		_G.Msg = old
-
-		FlushTable(ply)
-	end
-
 	hook.Run("gbug.CreateEnv", env)
 
 	setfenv(func, setmetatable(env, {
@@ -209,10 +184,13 @@ function Run(str, ply)
 	end
 
 	CreateEnv(func, ply)
+	CreateDetours(ply)
 
 	local ok, returnVal = xpcall(func, function(err)
 		ErrorOut(ply, debug.traceback(err))
 	end)
+
+	RestoreDetours()
 
 	if not ok then
 		return
