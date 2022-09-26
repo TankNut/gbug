@@ -18,7 +18,7 @@ end
 function Print(val, inline)
 	for _, v in pairs(CustomPrinters) do
 		if v[1](val) then
-			return RunPrinter(val, v[2])
+			return RunPrinter(val, v[2], inline)
 		end
 	end
 
