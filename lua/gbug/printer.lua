@@ -119,6 +119,7 @@ end
 
 AddPrinter(TYPE_BOOL, "Bool")
 AddPrinter(TYPE_STRING, "String")
+AddPrinter(TYPE_TABLE, "Table")
 AddPrinter(TYPE_FUNCTION, "Function")
 AddPrinter(TYPE_ENTITY, "Entity")
 AddPrinter(TYPE_VECTOR, "Vector")
