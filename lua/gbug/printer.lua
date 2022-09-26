@@ -45,8 +45,55 @@ function RunPrinter(val, mod, inline)
 	end
 end
 
+function TablePrinter(val)
+	local tab = val:GetTable()
+
+	if table.IsEmpty(tab) then
+		return {color_white, "{}"}
+	end
+
+	local acc = {color_white, "{\n"}
+	local width = 0
+
+	for k, v in SortedPairs(tab) do
+		local key = tostring(k)
+
+		if tonumber(key[1]) then
+			key = "[" .. key .. "]"
+		end
+
+		width = math.max(width, #key)
+	end
+
+	local first = true
+
+	for k, v in SortedPairs(tab) do
+		local prefix = {}
+
+		if first then
+			first = false
+		else
+			prefix = {color_white, ",\n"}
+		end
+
+		local key = {gbug.Indent, gbug.Colors.Value, string.format("%-" .. width .. "s", k), color_white, " = "}
+		local value = gbug.Print(v, true)
+
+		table.Add(acc, prefix)
+		table.Add(acc, key)
+		table.Add(acc, value)
+	end
+
+	table.Add(acc, {
+		color_white, "\n}"
+	})
+
+	return acc
+end
+
 AddPrinter(TYPE_BOOL, "Bool")
 AddPrinter(TYPE_STRING, "String")
+AddPrinter(TYPE_ENTITY, "Entity")
 AddPrinter(TYPE_VECTOR, "Vector")
 AddPrinter(TYPE_ANGLE, "Angle")
 
