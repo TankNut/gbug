@@ -69,11 +69,12 @@ function TablePrinter(val)
 
 		local key = tostring(k)
 
-		if tonumber(key[1]) then
-			key = "[" .. key .. "]"
+		if tonumber(key[1]) and tonumber(key) == nil then
+			width = math.max(width, #key + 1)
+		else
+			width = math.max(width, #key)
 		end
 
-		width = math.max(width, #key)
 		i = i + 1
 	end
 
@@ -94,7 +95,19 @@ function TablePrinter(val)
 			prefix = {color_white, ",\n"}
 		end
 
-		local key = {gbug.Indent, gbug.Colors.Value, string.format("%-" .. width .. "s", k), color_white, " = "}
+		local key = {gbug.Indent}
+		local str = tostring(k)
+
+		if tonumber(str[1]) then
+			if tonumber(str) == nil then
+				table.Add(key, {color_white, "[", gbug.Colors.String, string.format("\"%-" .. width .. "s", k .. "\""), color_white, "] = "})
+			else
+				table.Add(key, {color_white, "[", gbug.Colors.Print, string.format("%-" .. width .. "s", k), color_white, "] = "})
+			end
+		else
+			table.Add(key, {gbug.Colors.Value, string.format("%-" .. width .. "s", k), color_white, " = "})
+		end
+
 		local value = gbug.Print(v, true)
 
 		table.Add(acc, prefix)
