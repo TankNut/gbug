@@ -19,27 +19,6 @@ function CreateDetours(ply)
 		HandleOutput(ply, {gbug.Colors.Print, table.concat(tab, Indent)})
 	end)
 
-	local function msgDetour(...)
-		local tab = {...}
-
-		for k, v in pairs(tab) do
-			tab[k] = tostring(v)
-		end
-
-		table.insert(tab, 1, gbug.Colors.Print)
-		HandleOutput(ply, tab)
-	end
-
-	detour("Msg", msgDetour) -- We insert newlines after everything atm so these are identical
-	detour("MsgN", msgDetour) -- Should probably change that
-	detour("MsgAll", function(...)
-		msgDetour(...)
-
-		if SERVER then
-			Detours.MsgAll(...)
-		end
-	end)
-
 	detour("MsgC", function(...)
 		local tab = {...}
 
