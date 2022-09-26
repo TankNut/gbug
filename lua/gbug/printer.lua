@@ -93,6 +93,7 @@ end
 
 AddPrinter(TYPE_BOOL, "Bool")
 AddPrinter(TYPE_STRING, "String")
+AddPrinter(TYPE_FUNCTION, "Function")
 AddPrinter(TYPE_ENTITY, "Entity")
 AddPrinter(TYPE_VECTOR, "Vector")
 AddPrinter(TYPE_ANGLE, "Angle")
