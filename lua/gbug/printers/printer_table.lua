@@ -14,6 +14,6 @@ function Inline(val)
 	end
 
 	return {
-		color_white, "{", gbug.Colors.Comment, string.format("--[[ table: %p ]]", val)
+		color_white, "{ ", gbug.Colors.Comment, string.format("--[[ table: %p ]]", val), color_white, " }"
 	}
 end
