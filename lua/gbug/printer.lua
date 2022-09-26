@@ -5,10 +5,14 @@ CustomPrinters = CustomPrinters or {}
 
 function AddPrinter(typeid, mod)
 	Printers[typeid] = mod
+
+	include(string.format("printers/printer_%s.lua", string.lower(mod)))
 end
 
 function AddCustomPrinter(id, check, mod)
 	CustomPrinters[id] = {check, mod}
+
+	include(string.format("printers/printer_%s.lua", string.lower(mod)))
 end
 
 function Print(val, inline)
@@ -40,9 +44,6 @@ function RunPrinter(val, mod, inline)
 		return mod.Print(val)
 	end
 end
-
-include("printers/printer_bool.lua")
-include("printers/printer_string.lua")
 
 AddPrinter(TYPE_BOOL, "Bool")
 AddPrinter(TYPE_STRING, "String")
