@@ -40,6 +40,8 @@ Any code running in gbug will have access to a plethora of additional functions 
 | `me`    | `Player` | The player that's running the code     |
 | `lp`    | `Player` | **(CLIENT)** `LocalPlayer()`           |
 
+The following vars all have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
+
 | Var     | Type     |                    |
 |---------|----------|--------------------|
 | `sid`   | `String` | `me:SteamID()`     |
@@ -48,8 +50,6 @@ Any code running in gbug will have access to a plethora of additional functions 
 | `tr`    | `Table`  | `me:GetEyeTrace()` |
 | `there` | `Vector` | `tr.HitPos`        |
 | `this`  | `Entity` | `tr.Entity`        |
-
-All of these have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
 
 | Function                | Returns         |                                                                                                                                                      |
 |-------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
