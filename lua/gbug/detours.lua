@@ -16,7 +16,7 @@ function CreateDetours(ply)
 			tab[k] = tostring(v)
 		end
 
-		HandleOutput(ply, {gbug.Colors.Print, table.concat(tab, Indent)})
+		gbug.HandleOutput(ply, {gbug.Colors.Print, table.concat(tab, gbug.Indent)})
 	end)
 
 	detour("MsgC", function(...)
@@ -29,7 +29,7 @@ function CreateDetours(ply)
 		end
 
 		table.insert(tab, 1, gbug.Colors.Print)
-		HandleOutput(ply, tab)
+		gbug.HandleOutput(ply, tab)
 	end)
 
 	detour("PrintTable", function(tab, indent, done)
@@ -52,23 +52,23 @@ function CreateDetours(ply)
 			local key = keys[i]
 			local value = t[key]
 
-			WriteToBuffer(string.rep("\t", indent))
+			gbug.WriteToBuffer(string.rep("\t", indent))
 
 			if istable(value) and not done[value] then
 				done[value] = true
 
-				WriteToBuffer(key, ":\n")
+				gbug.WriteToBuffer(key, ":\n")
 
 				PrintTable(value, indent + 2, done)
 
 				done[value] = nil
 			else
-				WriteToBuffer(key, "\t=\t", value, "\n")
+				gbug.WriteToBuffer(key, "\t=\t", value, "\n")
 			end
 		end
 
 		if indent == 0 then
-			FlushMessageBuffer(ply)
+			gbug.FlushMessageBuffer(ply)
 		end
 	end)
 end
