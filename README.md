@@ -3,16 +3,24 @@ A debug library for Garry's Mod
 
 Designed after [GCompute](https://github.com/notcake/gcompute) this library gives you a plain and simple lua console to execute code in, depending on your setup the code may be executed on your own client, other clients, the server or all of the above at the same time with any output being piped back to your console.
 
-## Commands
+## Console Commands
 
 | Command       |                                                                              |
 |---------------|------------------------------------------------------------------------------|
 | `gbug_reload` | Reloads the UI, you shouldn't have to use this                               |
 | `gbug_toggle` | Toggles the UI's visibility, this is the only way to access it at the moment |
 
+## Commands
+
+Commands are ran by typing `:<command>` and execute separately, you cannot use it together with other code.
+
+| Command |                    |
+|---------|--------------------|
+| `cl`    | Clears the console |
+
 ## Modes
 
-Modes are specified by typing `@<mode>:<arg>` either in front of your command or on it's own. The former will use that mode for that command while the latter changes the default.
+Modes are specified by typing `@<mode>:<arg>` either in front of your code or on it's own. The former will use that mode for that run while the latter changes the default.
 
 | Mode             | Commands       |                                                                            |
 |------------------|----------------|----------------------------------------------------------------------------|
@@ -40,6 +48,10 @@ Any code running in gbug will have access to a plethora of additional functions 
 | `me`    | `Player` | The player that's running the code     |
 | `lp`    | `Player` | **(CLIENT)** `LocalPlayer()`           |
 
+| Function                | Returns         |                                                                                                                                                    |
+|-------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NamedEntities(filter)` | `Table\|Entity` | **(SERVER)** Returns a key-value table containing every named entity that matches `filter`, returns the entity directly if there's only one result |
+
 The following vars all have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
 
 | Var     | Type     |                    |
@@ -50,7 +62,3 @@ The following vars all have `LocalPlayer()` equivalents availble on the client w
 | `tr`    | `Table`  | `me:GetEyeTrace()` |
 | `there` | `Vector` | `tr.HitPos`        |
 | `this`  | `Entity` | `tr.Entity`        |
-
-| Function                | Returns         |                                                                                                                                                      |
-|-------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `NamedEntities(filter)` | `Table\|Entity` | **(SERVER)** Returns a key-value table containing every named entity that matches `filter`, returns the entity directly if there's only one result   |

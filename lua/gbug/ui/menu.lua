@@ -123,11 +123,31 @@ function PANEL:ParseTarget(val)
 	return command, arg
 end
 
+local localCommands = {
+	[":cl"] = function(self)
+		self.Buffer:SetText("")
+	end
+}
+
 function PANEL:OnSubmit(val)
 	local targetMode = self.TargetMode
 	local targetArg = self.TargetArg
 
-	if val[1] == "@" then
+	if val[1] == ":" then
+		local command = localCommands[val]
+
+		self.Buffer:WriteLine(0, {val})
+
+		if not command then
+			self:HandleError("Unknown command")
+
+			return
+		end
+
+		command(self)
+
+		return
+	elseif val[1] == "@" then
 		local split = string.Explode(" ", val)
 
 		local mode, arg = self:ParseTarget(split[1])
