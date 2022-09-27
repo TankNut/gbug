@@ -55,11 +55,12 @@ Any code running in gbug will have access to a plethora of additional functions 
 
 The following vars all have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
 
-| Var     | Type     |                    |
-|---------|----------|--------------------|
-| `sid`   | `String` | `me:SteamID()`     |
-| `here`  | `Vector` | `me:GetPos()`      |
-| `eye`   | `Vector` | `me:EyePos()`      |
-| `tr`    | `Table`  | `me:GetEyeTrace()` |
-| `there` | `Vector` | `tr.HitPos`        |
-| `this`  | `Entity` | `tr.Entity`        |
+| Var     | Type     |                        |
+|---------|----------|------------------------|
+| `sid`   | `String` | `me:SteamID()`         |
+| `here`  | `Vector` | `me:GetPos()`          |
+| `eye`   | `Vector` | `me:EyePos()`          |
+| `tr`    | `Table`  | `me:GetEyeTrace()`     |
+| `there` | `Vector` | `tr.HitPos`            |
+| `this`  | `Entity` | `tr.Entity`            |
+| `gun`   | `Entity` | `me:GetActiveWeapon()` |

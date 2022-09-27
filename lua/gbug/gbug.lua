@@ -151,6 +151,7 @@ function CreateEnv(func, ply)
 	playerEnv("tr", function(p) return p:GetEyeTrace() end)
 	playerEnv("there", function(_, l) return env[l and "ltr" or "tr"].HitPos end)
 	playerEnv("this", function(_, l) return env[l and "ltr" or "tr"].Entity end)
+	playerEnv("gun", function(p) return p:GetActiveWeapon() end)
 
 	-- Functions
 
