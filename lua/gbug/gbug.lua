@@ -154,6 +154,10 @@ function CreateEnv(func, ply)
 
 	-- Functions
 
+	env.Console = function(str)
+		RunConsoleCommand(unpack(string.Explode(" ", str)))
+	end
+
 	if SERVER then
 		env.NamedEntities = function(filter)
 			filter = filter or ""

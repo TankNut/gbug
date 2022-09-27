@@ -40,7 +40,7 @@ Modes are specified by typing `@<mode>:<arg>` either in front of your code or on
 
 ## Environment
 
-Any code running in gbug will have access to a plethora of additional functions or variables to make debugging quick and easy, these effectively act as local vars or functions
+Any code running in gbug will have access to a plethora of additional functions or variables to make debugging quick and easy, these effectively act as local vars or functions.
 
 | Var     | Type     |                                        |
 |---------|--------- |----------------------------------------|
@@ -51,6 +51,7 @@ Any code running in gbug will have access to a plethora of additional functions 
 | Function                | Returns         |                                                                                                                                                    |
 |-------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
 | `NamedEntities(filter)` | `Table\|Entity` | **(SERVER)** Returns a key-value table containing every named entity that matches `filter`, returns the entity directly if there's only one result |
+| `Console(str)`          |                 | Runs the given console command in whatever environment it's running in                                                                             |
 
 The following vars all have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
 

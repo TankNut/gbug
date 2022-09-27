@@ -29,6 +29,12 @@ local modeCommands = {
 	["@global"] = gbug.TARGET_GLOBAL
 }
 
+local localCommands = {
+	[":cl"] = function(self)
+		self.Buffer:SetText("")
+	end
+}
+
 function PANEL:Init()
 	self:SetSize(ScrW() * 0.8, ScrH() * 0.8)
 	self:DockPadding(5, 5, 5, 5)
@@ -122,12 +128,6 @@ function PANEL:ParseTarget(val)
 
 	return command, arg
 end
-
-local localCommands = {
-	[":cl"] = function(self)
-		self.Buffer:SetText("")
-	end
-}
 
 function PANEL:OnSubmit(val)
 	local targetMode = self.TargetMode
