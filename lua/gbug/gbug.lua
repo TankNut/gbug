@@ -127,37 +127,34 @@ function CreateEnv(func, ply)
 
 	env.gm = gmod.GetGamemode()
 
+	-- Player vars
+
 	local me = IsValid(ply) and ply or LocalPlayer()
 
 	env.me = me
-	env.sid = me:SteamID()
-
-	env.here = me:GetPos()
-	env.eye = me:EyePos()
-
-	local tr = me:GetEyeTrace()
-
-	env.tr = tr
-
-	env.there = tr.HitPos
-	env.this = tr.Entity
 
 	if CLIENT then
-		local lp = LocalPlayer()
+		env.lp = LocalPlayer()
+	end
 
-		env.lp = lp
-		env.lsid = lp:SteamID()
+	local function playerEnv(key, callback)
+		env[key] = callback(me)
 
-		env.lhere = lp:GetPos()
-		env.leye = lp:EyePos()
+		if CLIENT then
+			env["l" .. key] = callback(LocalPlayer(), true)
+		end
+	end
 
-		local ltr = lp:GetEyeTrace()
+	playerEnv("sid", function(p) return p:SteamID() end)
+	playerEnv("here", function(p) return p:GetPos() end)
+	playerEnv("eye", function(p) return p:EyePos() end)
+	playerEnv("tr", function(p) return p:GetEyeTrace() end)
+	playerEnv("there", function(_, l) return env[l and "ltr" or "tr"].HitPos end)
+	playerEnv("this", function(_, l) return env[l and "ltr" or "tr"].Entity end)
 
-		env.ltr = ltr
+	-- Functions
 
-		env.lthere = ltr.HitPos
-		env.lthis = ltr.Entity
-	else
+	if SERVER then
 		env.NamedEntities = function(filter)
 			filter = filter or ""
 
