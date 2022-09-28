@@ -216,18 +216,24 @@ function Run(str, ply)
 	CreateEnv(func, ply)
 	CreateDetours(ply)
 
-	local ok, returnVal = xpcall(func, function(err)
+	local res = {xpcall(func, function(err)
 		ErrorOut(ply, debug.traceback(err))
-	end)
+	end)}
 
 	RestoreDetours()
 	FlushMessageBuffer(ply)
 
-	if not ok then
+	if not res[1] then
 		return
 	end
 
-	if returnVal != nil then
-		HandleOutput(ply, Print(returnVal))
+	if res[2] != nil then
+		for k, v in pairs(res) do
+			if k == 1 then
+				continue
+			end
+
+			HandleOutput(ply, Print(v))
+		end
 	end
 end
