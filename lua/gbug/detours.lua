@@ -33,6 +33,12 @@ function CreateDetours(ply)
 	end)
 
 	detour("PrintTable", function(tab, indent, done)
+		if table.IsEmpty(tab) and not indent then
+			print("Empty table")
+
+			return
+		end
+
 		indent = indent or 0
 		done = done or {}
 
