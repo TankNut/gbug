@@ -78,7 +78,7 @@ MessageBuffer = {}
 
 function WriteToBuffer(...)
 	for _, v in pairs({...}) do
-		MessageBuffer = MessageBuffer .. tostring(v)
+		table.insert(MessageBuffer, tostring(v))
 	end
 end
 

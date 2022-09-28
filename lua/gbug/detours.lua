@@ -36,7 +36,7 @@ function CreateDetours(ply)
 		indent = indent or 0
 		done = done or {}
 
-		local keys = table.GetKeys(t)
+		local keys = table.GetKeys(tab)
 
 		table.sort(keys, function(a, b)
 			if isnumber(a) and isnumber(b) then
@@ -46,11 +46,11 @@ function CreateDetours(ply)
 			return tostring(a) < tostring(b)
 		end)
 
-		done[t] = true
+		done[tab] = true
 
 		for i = 1, #keys do
 			local key = keys[i]
-			local value = t[key]
+			local value = tab[key]
 
 			gbug.WriteToBuffer(string.rep("\t", indent))
 
