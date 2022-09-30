@@ -4,7 +4,7 @@ module("gbug.Printer.Function", package.seeall)
 
 function Print(val)
 	local info = debug.getinfo(val, "S")
-	local native = info.what == "C"
+	local native = info.linedefined == -1
 
 	return {
 		gbug.Colors.Comment, string.format("-- %p\n", val),
@@ -15,7 +15,7 @@ end
 
 function Inline(val)
 	local info = debug.getinfo(val, "S")
-	local native = info.what == "C"
+	local native = info.linedefined == -1
 
 	return {
 		gbug.Colors.Function, "function", color_white, "(...) ", gbug.Colors.Function, "end ",
