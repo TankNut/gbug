@@ -3,7 +3,7 @@ AddCSLuaFile()
 module("gbug.Printer.Entity", package.seeall)
 
 function Print(val)
-	if not IsValid(val) then
+	if not IsValid(val) and val != game.GetWorld() then
 		return {
 			gbug.Colors.Comment, string.format("-- %p\n", val),
 			gbug.Colors.Value, "NULL"

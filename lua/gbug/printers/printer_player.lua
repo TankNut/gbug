@@ -2,8 +2,6 @@ AddCSLuaFile()
 
 module("gbug.Printer.Player", package.seeall)
 
-
-
 function Print(val)
 	return table.Add({
 		gbug.Colors.Comment, string.format("-- %p\n", val),
