@@ -80,6 +80,8 @@ function TablePrinter(val)
 
 	local first = true
 
+	i = 0
+
 	for k, v in SortedPairs(tab) do
 		if i >= tableLimit then
 			table.Add(acc, {gbug.Colors.Comment, "\n", gbug.Indent, string.format("%s more...", count - tableLimit)})
