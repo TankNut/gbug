@@ -48,10 +48,11 @@ Any code running in gbug will have access to a plethora of additional functions 
 | `me`    | `Player` | The player that's running the code     |
 | `lp`    | `Player` | **(CLIENT)** `LocalPlayer()`           |
 
-| Function                | Returns         |                                                                                                                                                    |
-|-------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `NamedEntities(filter)` | `Table\|Entity` | **(SERVER)** Returns a key-value table containing every named entity that matches `filter`, returns the entity directly if there's only one result |
-| `Console(str)`          |                 | Runs the given console command in whatever environment it's running in                                                                             |
+| Function                         | Returns         |                                                                                                                                                    |
+|----------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NamedEntities(filter)`          | `Table\|Entity` | **(SERVER)** Returns a key-value table containing every named entity that matches `filter`, returns the entity directly if there's only one result |
+| `Console(str)`                   |                 | Runs the given console command in whatever environment it's running in                                                                             |
+| `CreateEnt(class, pos, ang, kv)` | `Entity`        | Creates a new entity at the given position/angle, setting any keyvalues passed to it in `kv`
 
 The following vars all have `LocalPlayer()` equivalents availble on the client which use `l` as a prefix, e.g. `lsid`, `ltr` and `lthis`
 

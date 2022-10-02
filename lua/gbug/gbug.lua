@@ -160,6 +160,24 @@ function CreateEnv(func, ply)
 	end
 
 	if SERVER then
+		env.CreateEntity = function(class, pos, ang, kv)
+			local ent = ents.Create(class)
+
+			ent:SetPos(pos or vector_origin)
+			ent:SetAngles(ang or angle_zero)
+
+			if kv then
+				for k, v in pairs(kv) do
+					ent:SetKeyValue(k, v)
+				end
+			end
+
+			ent:Spawn()
+			ent:Activate()
+
+			return ent
+		end
+
 		env.NamedEntities = function(filter)
 			filter = filter or ""
 
