@@ -62,8 +62,6 @@ function TablePrinter(val)
 
 	for k, v in SortedPairs(tab) do
 		if i >= tableLimit then
-			i = 0
-
 			break
 		end
 
