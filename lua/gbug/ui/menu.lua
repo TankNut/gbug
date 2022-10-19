@@ -41,7 +41,13 @@ function PANEL:Init()
 
 	self:BuildLayout()
 
-	self.TargetMode = gbug.TARGET_SELF
+	local lastMode = cookie.GetNumber("gbug.LastMode", gbug.TARGET_SELF)
+
+	if not modes[lastMode] then
+		lastMode = gbug.TARGET_SELF
+	end
+
+	self.TargetMode = lastMode
 	self.TargetArg = NULL
 end
 
@@ -163,6 +169,10 @@ function PANEL:OnSubmit(val)
 	if #val == 0 then
 		self.TargetMode = targetMode
 		self.TargetArg = targetArg
+
+		if self.TargetMode != gbug.TARGET_CLIENT then
+			cookie.Set("gbug.LastMode", self.TargetMode)
+		end
 
 		return
 	end

@@ -5,6 +5,12 @@ function PANEL:Init()
 
 	self:SetHistoryEnabled(true)
 	self:SetEnterAllowed(false) -- Handled in OnKeyCode
+
+	local val = cookie.GetString("gbug.LastLine", "")
+
+	if val != "" then
+		table.insert(self.History, val)
+	end
 end
 
 function PANEL:OnKeyCode(key)
@@ -13,7 +19,11 @@ function PANEL:OnKeyCode(key)
 
 		self:OnSubmit(val)
 
-		table.insert(self.History, val)
+		if self.History[#self.History] != val then
+			table.insert(self.History, val)
+		end
+
+		cookie.Set("gbug.LastLine", val)
 
 		self.HistoryPos = 0
 		self:SetText("")
