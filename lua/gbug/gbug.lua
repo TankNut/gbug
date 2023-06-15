@@ -126,6 +126,8 @@ function CreateEnv(func, ply)
 	local env = {}
 
 	env.gm = gmod.GetGamemode()
+	env.GM = env.gm
+	env.GAMEMODE = env.gm
 
 	-- Player vars
 
@@ -152,11 +154,34 @@ function CreateEnv(func, ply)
 	playerEnv("there", function(_, l) return env[l and "ltr" or "tr"].HitPos end)
 	playerEnv("this", function(_, l) return env[l and "ltr" or "tr"].Entity end)
 	playerEnv("gun", function(p) return p:GetActiveWeapon() end)
+	playerEnv("swep", function(p) return p:GetActiveWeapon() end)
 
 	-- Functions
 
 	env.Console = function(str)
 		RunConsoleCommand(unpack(string.Explode(" ", str)))
+	end
+
+	env.Sine = function(min, max, rate)
+		return ((min - max) * math.sin(CurTime() * (rate or 1)) + max + min) * 0.5
+	end
+
+	env.Sound = function(str)
+		return sound.GetProperties(str)
+	end
+
+	env.FindSounds = function(str)
+		local tab = {}
+
+		str = string.lower(str)
+
+		for _, v in pairs(sound.GetTable()) do
+			if string.find(string.lower(v), str) then
+				tab[#tab + 1] = v
+			end
+		end
+
+		return tab
 	end
 
 	if SERVER then
