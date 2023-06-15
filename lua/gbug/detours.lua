@@ -12,8 +12,8 @@ function CreateDetours(ply)
 	detour("print", function(...)
 		local tab = {...}
 
-		for k, v in pairs(tab) do
-			tab[k] = tostring(v)
+		for i = 1, #tab do
+			tab[i] = tostring(tab[i])
 		end
 
 		gbug.HandleOutput(ply, {gbug.Colors.Print, table.concat(tab, gbug.Indent)})
@@ -28,7 +28,10 @@ function CreateDetours(ply)
 			end
 		end
 
-		table.insert(tab, 1, gbug.Colors.Print)
+		if not IsColor(tab[1]) then
+			table.insert(tab, 1, gbug.Colors.Print)
+		end
+
 		gbug.HandleOutput(ply, tab)
 	end)
 
